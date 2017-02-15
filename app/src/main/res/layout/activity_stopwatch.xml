@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_stopwatch"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:weightSum="1"
+    tools:context="com.example.dennisjohansson8.tracker.StopWatchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.00"
+        android:background="@android:drawable/menuitem_background"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/stopwatch_stopwatch"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/stopwatch"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/stopwatch_menu"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="50dp"
+            android:alpha=".73"
+            android:background="@drawable/menu"
+            android:onClick="switchToMenu" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.40"
+        android:background="@android:drawable/menuitem_background"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/stopwatch_hours"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/default_clock_text"
+            android:textSize="70sp"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/default_clock_binder"
+            android:textSize="70sp"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/stopwatch_minutes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/default_clock_text"
+            android:textSize="70sp"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/default_clock_binder"
+            android:textSize="70sp"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/stopwatch_seconds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/default_clock_text"
+            android:textSize="70sp"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/default_clock_binder"
+            android:textSize="30sp"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/stopwatch_miliseconds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="@string/default_clock_text"
+            android:textSize="30sp"
+            android:textStyle="normal|bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.38"
+        android:background="@android:drawable/menuitem_background"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="10dp"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/stopwatch_meters_per_seconds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom|end|center_horizontal"
+                android:text="@string/default_speed_text"
+                android:textSize="40sp"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:gravity="bottom|start|center_horizontal"
+                android:text="@string/m_per_s" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="50dp"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:id="@+id/stopwatch_kilometers_per_hour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom|end|center_horizontal"
+                android:text="@string/default_speed_text"
+                android:textSize="40sp"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="bottom|start|center_horizontal"
+                android:text="@string/km_per_h" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.12"
+        android:background="@android:drawable/menuitem_background"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/stopwatch_start"
+            style="@style/ButtonTheme"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="10dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:onClick="startWatch"
+            android:text="@string/start" />
+
+        <Button
+            android:id="@+id/stopwatch_stop"
+            style="@style/ButtonTheme"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="25dp"
+            android:background="@color/red"
+            android:gravity="center"
+            android:onClick="resetWatch"
+            android:text="@string/reset" />
+
+    </LinearLayout>
+
+</LinearLayout>

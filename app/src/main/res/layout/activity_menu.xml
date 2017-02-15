@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:weightSum="1"
+    tools:context="com.example.dennisjohansson8.tracker.StopWatchActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/menuitem_background"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/menu_stopwatch"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="10dp"
+            android:alpha=".73"
+            android:background="@drawable/stopwatch"
+            android:gravity="center"
+            android:onClick="switchToStopwatch" />
+
+        <Button
+            android:id="@+id/menu_menu"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="50dp"
+            android:background="@drawable/menu" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/menu_table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

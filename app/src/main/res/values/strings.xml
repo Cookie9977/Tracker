@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Tracker</string>
+    <string name="default_clock_text">00</string>
+    <string name="default_clock_binder">:</string>
+    <string name="m_per_s">m/s</string>
+    <string name="km_per_h">km/h</string>
+    <string name="meters">m</string>
+    <string name="time">Time:</string>
+    <string name="distance">Distance:</string>
+    <string name="avg_speed">Average speed:</string>
+    <string name="favorite">Favorite button</string>
+    <string name="steps">Number of steps:</string>
+    <string name="avg_speed_zero">Average speed while moving:</string>
+    <string name="fastest">Highest speed:</string>
+    <string name="slowest">Lowest speed:</string>
+    <string name="median_speed">Median speed:</string>
+    <string name="median_speed_zero">Median speed while moving:</string>
+    <string name="default_speed_text">0.0</string>
+    <string name="reset">Reset</string>
+    <string name="start">Start</string>
+    <string name="pause">Pause</string>
+</resources>
