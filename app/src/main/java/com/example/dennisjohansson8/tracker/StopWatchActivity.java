@@ -2,7 +2,6 @@ package com.example.dennisjohansson8.tracker;
 
 import android.Manifest;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,7 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -51,7 +49,6 @@ public class StopWatchActivity extends AppCompatActivity {
         } else {
             GPS = new GPS(this, this);
         }
-        checkGPS();
     }
 
     public void switchToMenu(View view) {
@@ -183,7 +180,6 @@ public class StopWatchActivity extends AppCompatActivity {
         milliseconds.setText(R.string.default_clock_text);
         Log.d("debug", "reset");
     }
-
     /* void insertStuff() {
          try {
              Util.db.execute("INSERT INTO lap (m_p_s,location) VALUES ('0┼0┼0┼3┼4┼7┼9┼5┼4┼3┼','54,96,2┼')");
@@ -191,32 +187,5 @@ public class StopWatchActivity extends AppCompatActivity {
              Log.d("debug", "can't connect to db");
          }
      }*/
-    void checkGPS() {
-        Log.d("debug", "1");
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        Log.d("debug", "3");
-        builder.setMessage("For this app to be able to track your speed GPS is required, turn on GPS?");
-        Log.d("debug", "4");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        turnOnGPS();
-                    }
-                });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        Log.d("debug", "5");
-        builder.show();
-        Log.d("debug", "6");
-    }
 
-    void turnOnGPS() {
-        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-        startActivity(intent);
-/*        Intent intent = new Intent("android.location.GPS_ENABLED_CHANGE");
-        intent.putExtra("enabled", true);
-        sendBroadcast(intent);*/
-    }
 }

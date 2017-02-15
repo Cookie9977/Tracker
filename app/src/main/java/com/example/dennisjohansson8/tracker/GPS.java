@@ -3,11 +3,16 @@ package com.example.dennisjohansson8.tracker;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -36,6 +41,7 @@ public class GPS extends Activity implements GoogleApiClient.ConnectionCallbacks
         logic = new LapLogic();
         buildApi();
         createRequest();
+        checkGPS();
     }
 
     /**
@@ -47,8 +53,6 @@ public class GPS extends Activity implements GoogleApiClient.ConnectionCallbacks
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .build();
-        Log.d("debug", "hello create");
-
     }
 
     /**
@@ -63,14 +67,12 @@ public class GPS extends Activity implements GoogleApiClient.ConnectionCallbacks
 
     @Override
     protected void onStart() {
-        Log.d("debug", "hello start");
         mGoogleClient.connect();
         super.onStart();
     }
 
     @Override
     protected void onStop() {
-        Log.d("debug", "hello stop");
         mGoogleClient.disconnect();
         super.onStop();
     }
@@ -78,17 +80,11 @@ public class GPS extends Activity implements GoogleApiClient.ConnectionCallbacks
     //don't work on emulators
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        Log.d("debug", "hello connected");
         try {
-            Log.d("debug", "1");
             this.location = LocationServices.FusedLocationApi.getLastLocation(mGoogleClient);
-            Log.d("debug", "1");
             Util.locationArray.add(null);
-            Log.d("debug", "1");
             Util.locationArray.add(this.location);
-            Log.d("debug", "1");
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleClient, request, this);
-            Log.d("debug", "Location service started");
         } catch (SecurityException e) {
             Log.d("catch", "permissions required");
         }
@@ -108,8 +104,6 @@ public class GPS extends Activity implements GoogleApiClient.ConnectionCallbacks
     public void onLocationChanged(Location location) {
         if (this.location != null) {
             int deltaTime = (int) Math.round((double) (location.getElapsedRealtimeNanos() - this.location.getElapsedRealtimeNanos()) / 1000000000);
-            Log.d("debug", "new time:" + location.getTime());
-            Log.d("debug", "time: " + deltaTime);
 
             if (location.hasSpeed()) {
                 speed = location.getSpeed();
@@ -137,7 +131,6 @@ public class GPS extends Activity implements GoogleApiClient.ConnectionCallbacks
             lastNonRepeatedSpeed = (speed != lastNonRepeatedSpeed) ? speed : lastNonRepeatedSpeed;
             this.location = location;
 
-            Log.d("debug", "size: " + Util.speedArray.size());
             Util.locationArray.add(this.location);
         } else {
             this.location = location;
@@ -232,5 +225,29 @@ public class GPS extends Activity implements GoogleApiClient.ConnectionCallbacks
 //        Util.locationArray = new ArrayList<>();
         Util.speedArray = new ArrayList<>();
         this.location = null;
+    }
+
+    void checkGPS() {
+        LocationManager lm = (LocationManager)context.getSystemService(Context.LOCATION_SERVICE);
+        if (!lm.isProviderEnabled(LocationManager.GPS_PROVIDER) && !lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
+            AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+            builder.setMessage("For this app to be able to track your speed GPS is required, turn on GPS?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    turnOnGPS();
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
+        }
+    }
+
+    void turnOnGPS() {
+        Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+        context.startActivity(intent);
     }
 }
