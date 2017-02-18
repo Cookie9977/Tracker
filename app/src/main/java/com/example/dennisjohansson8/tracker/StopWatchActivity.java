@@ -7,7 +7,6 @@ import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -180,6 +179,8 @@ public class StopWatchActivity extends AppCompatActivity {
         milliseconds.setText(R.string.default_clock_text);
         Log.d("debug", "reset");
     }
+
+    // use this to insert test data
     /* void insertStuff() {
          try {
              Util.db.execute("INSERT INTO lap (m_p_s,location) VALUES ('0┼0┼0┼3┼4┼7┼9┼5┼4┼3┼','54,96,2┼')");

@@ -82,8 +82,10 @@ public class GPS extends Activity implements GoogleApiClient.ConnectionCallbacks
     public void onConnected(@Nullable Bundle bundle) {
         try {
             this.location = LocationServices.FusedLocationApi.getLastLocation(mGoogleClient);
-            Util.locationArray.add(null);
-            Util.locationArray.add(this.location);
+            //TODO incase of maps implementation uncomment
+
+/*            Util.locationArray.add(null);
+            Util.locationArray.add(this.location);*/
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleClient, request, this);
         } catch (SecurityException e) {
             Log.d("catch", "permissions required");
@@ -131,11 +133,11 @@ public class GPS extends Activity implements GoogleApiClient.ConnectionCallbacks
             lastNonRepeatedSpeed = (speed != lastNonRepeatedSpeed) ? speed : lastNonRepeatedSpeed;
             this.location = location;
 
-            Util.locationArray.add(this.location);
+/*            Util.locationArray.add(this.location);*/
         } else {
             this.location = location;
         }
-        Util.locationArray.add(location);
+  /*      Util.locationArray.add(location);*/
     }
 
     private double calcSpeed(int time, double distance) {
@@ -213,9 +215,10 @@ public class GPS extends Activity implements GoogleApiClient.ConnectionCallbacks
 
         if (moved) {
             try {
-                Util.db.execute("INSERT INTO lap (m_p_s " + /*, location*/ ") VALUES ('" + speedBuilder.toString() + ")");/*','" + locationBuilder.toString() + "')");*/
+                //Util.db.execute("INSERT INTO lap (m_p_s , location) VALUES ('" + speedBuilder.toString() + "','" + locationBuilder.toString() + "')");
+                Util.db.execute("INSERT INTO lap (m_p_s) VALUES ('" + speedBuilder.toString() + "')");
             } catch (Exception e) {
-                Log.d("catch", "can't insert into db");
+                Log.d("catch", "can't insert into db here");
             }
         } else {
             Log.d("debug", "skip on insert");
